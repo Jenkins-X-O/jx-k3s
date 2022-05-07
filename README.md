@@ -8,7 +8,7 @@ Jenkins X 3.x GitOps repository using k3s to create a kubernetes cluster, github
 
 Make sure you have created a cluster using k3s.
 
-If you dont have an existing k3s cluster, you can install one by running:
+If you don't have an existing k3s cluster, you can install one by running:
 
 ```bash
 curl -sfL https://get.k3s.io | sh -
