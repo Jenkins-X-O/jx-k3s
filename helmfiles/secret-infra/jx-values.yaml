@@ -38,7 +38,7 @@ jxRequirements:
     repository: jx-k3s
   - key: staging
   ingress:
-    domain: change.me
+    domain: 192.168.17.130.nip.io
     ignoreLoadBalancer: true
     kind: ingress
     namespaceSubDomain: .secret-infra.
