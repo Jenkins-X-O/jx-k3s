@@ -1,0 +1,22 @@
+apiVersion: jenkins.io/v1
+kind: SourceRepository
+metadata:
+  creationTimestamp: null
+  labels:
+    owner: Jenkins-X-O
+    provider: github
+    repository: jx-quick
+    gitops.jenkins-x.io/pipeline: 'namespaces'
+  name: jenkins-x-o-jx-quick
+  namespace: jx
+spec:
+  httpCloneURL: https://github.com/Jenkins-X-O/jx-quick.git
+  org: Jenkins-X-O
+  provider: https://github.com
+  providerKind: github
+  providerName: github
+  repo: jx-quick
+  scheduler:
+    kind: ""
+    name: in-repo
+  url: https://github.com/Jenkins-X-O/jx-quick
