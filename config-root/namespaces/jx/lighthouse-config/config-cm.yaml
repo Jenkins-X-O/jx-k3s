@@ -7,6 +7,7 @@ data:
       LinkURL: null
     in_repo_config:
       enabled:
+        Jenkins-X-O/gogogo-trial: true
         Jenkins-X-O/golang-trial: true
         Jenkins-X-O/jx-k3s: true
     plank: {}
@@ -20,6 +21,7 @@ data:
         required-if-present-contexts: null
         skip-unknown-contexts: false
       merge_method:
+        Jenkins-X-O/gogogo-trial: merge
         Jenkins-X-O/golang-trial: merge
         Jenkins-X-O/jx-k3s: merge
       queries:
@@ -33,6 +35,7 @@ data:
         - needs-rebase
         repos:
         - Jenkins-X-O/jx-k3s
+        - Jenkins-X-O/gogogo-trial
         - Jenkins-X-O/golang-trial
       - labels:
         - updatebot
@@ -44,6 +47,7 @@ data:
         - needs-rebase
         repos:
         - Jenkins-X-O/jx-k3s
+        - Jenkins-X-O/gogogo-trial
         - Jenkins-X-O/golang-trial
       target_url: http://lighthouse.jx.192.168.17.130.nip.io/merge/status
 kind: ConfigMap

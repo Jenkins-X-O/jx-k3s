@@ -1,0 +1,22 @@
+apiVersion: jenkins.io/v1
+kind: SourceRepository
+metadata:
+  creationTimestamp: null
+  labels:
+    owner: Jenkins-X-O
+    provider: github
+    repository: gogogo-trial
+    gitops.jenkins-x.io/pipeline: 'namespaces'
+  name: jenkins-x-o-gogogo-trial
+  namespace: jx
+spec:
+  httpCloneURL: https://github.com/Jenkins-X-O/gogogo-trial.git
+  org: Jenkins-X-O
+  provider: https://github.com
+  providerKind: github
+  providerName: github
+  repo: gogogo-trial
+  scheduler:
+    kind: ""
+    name: in-repo
+  url: https://github.com/Jenkins-X-O/gogogo-trial

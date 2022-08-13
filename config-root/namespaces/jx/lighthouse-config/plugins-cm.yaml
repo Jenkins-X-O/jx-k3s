@@ -8,6 +8,10 @@ data:
       require_self_approval: true
     - lgtm_acts_as_approve: true
       repos:
+      - Jenkins-X-O/gogogo-trial
+      require_self_approval: true
+    - lgtm_acts_as_approve: true
+      repos:
       - Jenkins-X-O/golang-trial
       require_self_approval: true
     cat: {}
@@ -20,6 +24,11 @@ data:
         env/prow/plugins.yaml:
           name: plugins
     external_plugins:
+      Jenkins-X-O/gogogo-trial:
+      - endpoint: http://cd-indicators.jx.svc.cluster.local/lighthouse/events
+        name: cd-indicators
+      - endpoint: http://lighthouse-webui-plugin.jx.svc.cluster.local/lighthouse/events
+        name: lighthouse-webui-plugin
       Jenkins-X-O/golang-trial:
       - endpoint: http://cd-indicators.jx.svc.cluster.local/lighthouse/events
         name: cd-indicators
@@ -35,6 +44,22 @@ data:
       additional_labels: null
     owners: {}
     plugins:
+      Jenkins-X-O/gogogo-trial:
+      - approve
+      - assign
+      - blunderbuss
+      - help
+      - hold
+      - lgtm
+      - lifecycle
+      - override
+      - size
+      - trigger
+      - wip
+      - heart
+      - cat
+      - dog
+      - pony
       Jenkins-X-O/golang-trial:
       - approve
       - assign
@@ -79,6 +104,9 @@ data:
     triggers:
     - repos:
       - Jenkins-X-O/jx-k3s
+      trusted_org: todo
+    - repos:
+      - Jenkins-X-O/gogogo-trial
       trusted_org: todo
     - repos:
       - Jenkins-X-O/golang-trial
