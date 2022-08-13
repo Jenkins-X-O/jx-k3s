@@ -1,0 +1,22 @@
+apiVersion: jenkins.io/v1
+kind: SourceRepository
+metadata:
+  creationTimestamp: null
+  labels:
+    owner: Jenkins-X-O
+    provider: github
+    repository: golang-trial
+    gitops.jenkins-x.io/pipeline: 'namespaces'
+  name: jenkins-x-o-golang-trial
+  namespace: jx
+spec:
+  httpCloneURL: https://github.com/Jenkins-X-O/golang-trial.git
+  org: Jenkins-X-O
+  provider: https://github.com
+  providerKind: github
+  providerName: github
+  repo: golang-trial
+  scheduler:
+    kind: ""
+    name: in-repo
+  url: https://github.com/Jenkins-X-O/golang-trial
