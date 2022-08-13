@@ -41,7 +41,7 @@ data:
         - needs-rebase
         repos:
         - Jenkins-X-O/jx-k3s
-      target_url: http://lighthouse.jx./merge/status
+      target_url: http://lighthouse.jx.192.168.17.130.nip.io/merge/status
 kind: ConfigMap
 metadata:
   creationTimestamp: null
