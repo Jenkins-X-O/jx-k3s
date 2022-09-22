@@ -3,9 +3,11 @@ namespace: jx-staging
 repositories:
 - name: dev
   url: https://jenkins-x-bdd.github.io/repo/
+- name: dev2
+  url: https://jenkins-x.github.io/bdd-jx3/
 releases:
 - chart: dev/gogogo-trial
-  version: 0.0.12
+  version: 0.0.13
   name: gogogo-trial
 templates: {}
 renderedvalues: {}
