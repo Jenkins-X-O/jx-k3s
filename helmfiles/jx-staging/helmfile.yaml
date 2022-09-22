@@ -1,0 +1,11 @@
+filepath: ""
+namespace: jx-staging
+repositories:
+- name: dev
+  url: https://jenkins-x-bdd.github.io/repo/
+releases:
+- chart: dev/gogogo-trial
+  version: 0.0.11
+  name: gogogo-trial
+templates: {}
+renderedvalues: {}
