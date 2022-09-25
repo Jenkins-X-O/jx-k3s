@@ -1,0 +1,11 @@
+filepath: ""
+namespace: jx-staging
+repositories:
+- name: dev
+  url: http://bucketrepo.jx.192.168.17.130.nip.io
+releases:
+- chart: dev/gogogo-trial
+  version: 0.0.14
+  name: gogogo-trial
+templates: {}
+renderedvalues: {}
