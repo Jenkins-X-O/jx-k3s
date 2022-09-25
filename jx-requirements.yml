@@ -5,9 +5,6 @@ spec:
     enabled: false
     schedule: ""
   cluster:
-    chartKind: pages
-    chartRepository: https://github.com/jenkins-x/bdd-jx3.git
-    clusterName: kind
     devEnvApprovers:
     - todo
     environmentGitOwner: todo
