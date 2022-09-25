@@ -18,7 +18,6 @@ spec:
   - key: dev
     owner: Jenkins-X-O
     repository: jx-k3s
-  - key: staging
   ingress:
     domain: 192.168.17.130.nip.io
     ignoreLoadBalancer: true
