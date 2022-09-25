@@ -21,9 +21,7 @@ jxRequirements:
     enabled: false
     schedule: ""
   cluster:
-    chartKind: pages
-    chartRepository: https://github.com/jenkins-x/bdd-jx3.git
-    clusterName: kind
+    chartRepository: http://jenkins-x-chartmuseum.jx.svc.cluster.local:8080
     devEnvApprovers:
     - todo
     environmentGitOwner: todo
