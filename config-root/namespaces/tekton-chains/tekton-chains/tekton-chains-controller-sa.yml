@@ -1,0 +1,14 @@
+# Source: tekton-chains/templates/ServiceAccount-tekton-chains-controller.yml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: tekton-chains-controller
+  namespace: tekton-chains
+  labels:
+    helm-release: "tekton-chains"
+    helm.sh/chart: "tekton-chains-0.2.3"
+    app.kubernetes.io/component: chains
+    app.kubernetes.io/part-of: tekton-pipelines
+    gitops.jenkins-x.io/pipeline: 'namespaces'
+  annotations:
+    meta.helm.sh/release-name: 'tekton-chains'

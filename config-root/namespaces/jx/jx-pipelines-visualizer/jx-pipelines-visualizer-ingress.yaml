@@ -19,12 +19,12 @@ metadata:
   namespace: jx
 spec:
   rules:
-    - host: dashboard.jx.192.168.17.130.nip.io
-      http:
-        paths:
-          - pathType: ImplementationSpecific
-            backend:
-              service:
-                name: jx-pipelines-visualizer
-                port:
-                  name: http
+  - host: dashboard.jx.192.168.17.130.nip.io
+    http:
+      paths:
+      - pathType: ImplementationSpecific
+        backend:
+          service:
+            name: jx-pipelines-visualizer
+            port:
+              name: http

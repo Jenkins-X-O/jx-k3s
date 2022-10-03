@@ -1,0 +1,24 @@
+# Source: tekton-chains/templates/ConfigMap-chains-config.yml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: chains-config #config is namespaced and the name is hard coded in chains https://github.com/tektoncd/chains/blob/4ebc18d05e8c6827e81569d294f716e9a5c7986f/pkg/config/config.go#L129
+  namespace: tekton-chains
+  labels:
+    app.kubernetes.io/component: chains
+    app.kubernetes.io/instance: default
+    app.kubernetes.io/part-of: tekton-pipelines
+    pipeline.tekton.dev/release: "devel"
+    version: "v0.8.0"
+    pipeline.tekton.dev/release: "devel"
+    version: v0.8.0
+    gitops.jenkins-x.io/pipeline: 'namespaces'
+  annotations:
+    meta.helm.sh/release-name: 'tekton-chains'
+data:
+  artifacts.oci.format: "simplesigning"
+  artifacts.oci.signer: "x509"
+  artifacts.oci.storage: "oci"
+  artifacts.taskrun.format: "tekton"
+  artifacts.taskrun.signer: "x509"
+  artifacts.taskrun.storage: "tekton"
