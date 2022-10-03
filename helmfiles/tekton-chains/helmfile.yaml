@@ -1,0 +1,18 @@
+filepath: ""
+environments:
+  default:
+    values:
+    - jx-values.yaml
+namespace: tekton-chains
+repositories:
+- name: chainguard
+  url: https://chainguard-dev.github.io/tekton-helm-charts
+releases:
+- chart: tekton/tekton-chains
+  version: 0.2.3
+  name: tekton-chains
+  values:
+  - ../../versionStream/charts/chainsguard-dev/tekton-chains/values.yaml.gotmpl
+  - jx-values.yaml
+templates: {}
+renderedvalues: {}
