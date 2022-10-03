@@ -12,7 +12,7 @@ releases:
   version: 0.2.3
   name: tekton-chains
   values:
-  - ../../versionStream/charts/chainsguard-dev/tekton-chains/values.yaml.gotmpl
+  - ../../versionStream/charts/chainguard-dev/tekton-chains/values.yaml.gotmpl
   - jx-values.yaml
 templates: {}
 renderedvalues: {}
