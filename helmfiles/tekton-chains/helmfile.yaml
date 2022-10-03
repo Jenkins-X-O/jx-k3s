@@ -5,10 +5,10 @@ environments:
     - jx-values.yaml
 namespace: tekton-chains
 repositories:
-- name: chainguard
+- name: tekton
   url: https://chainguard-dev.github.io/tekton-helm-charts/
 releases:
-- chart: tekton/tekton-chains
+- chart: tekton-chains
   version: 0.2.3
   name: tekton-chains
   values:
