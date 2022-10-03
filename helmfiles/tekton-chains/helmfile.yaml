@@ -8,7 +8,7 @@ repositories:
 - name: tekton
   url: https://chainguard-dev.github.io/tekton-helm-charts/
 releases:
-- chart: tekton-chains
+- chart: tekton/tekton-chains
   version: 0.2.3
   name: tekton-chains
   values:
