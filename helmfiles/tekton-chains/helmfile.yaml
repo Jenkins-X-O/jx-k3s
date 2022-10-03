@@ -6,7 +6,7 @@ environments:
 namespace: tekton-chains
 repositories:
 - name: chainguard
-  url: https://chainguard-dev.github.io/tekton-helm-charts
+  url: https://chainguard-dev.github.io/tekton-helm-charts/
 releases:
 - chart: tekton/tekton-chains
   version: 0.2.3

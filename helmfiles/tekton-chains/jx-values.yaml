@@ -39,7 +39,7 @@ jxRequirements:
     domain: 192.168.17.130.nip.io
     ignoreLoadBalancer: true
     kind: ingress
-    namespaceSubDomain: .tekton-pipelines.
+    namespaceSubDomain: .tekton-chains.
     tls:
       email: ""
       enabled: false

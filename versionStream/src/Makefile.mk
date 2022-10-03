@@ -39,6 +39,18 @@ VAULT_ROLE ?= jx-vault
 VAULT_MOUNT_POINT ?= kubernetes
 EXTERNAL_VAULT ?= false
 
+# on the case we need to specify a different vault role between the jx secret convert and the jx secret populate commands
+# VAULT_ROLE_POPULATE is a unique vault role just for the jx secret populate command
+# VAULT_ROLE_EXTERNAL_SECRETS is a unique vault role just for the jx secret convert command
+VAULT_ROLE_POPULATE ?= ${VAULT_ROLE}
+VAULT_ROLE_EXTERNAL_SECRETS ?= ${VAULT_ROLE}
+
+# on the case we need to specify a different vault mount point between the jx secret convert and the jx secret populate commands
+# VAULT_MOUNT_POINT_POPULATE is a unique vault mount point just for the jx secret populate command
+# VAULT_MOUNT_POINT_EXTERNAL_SECRETS is a unique vault mount point just for the jx secret convert command
+VAULT_MOUNT_POINT_POPULATE ?= ${VAULT_MOUNT_POINT}
+VAULT_MOUNT_POINT_EXTERNAL_SECRETS ?= ${VAULT_MOUNT_POINT}
+
 GIT_SHA ?= $(shell git rev-parse HEAD)
 
 # You can disable force mode on kubectl apply by modifying this line:
@@ -121,7 +133,7 @@ fetch: init $(COPY_SOURCE) $(REPOSITORY_RESOLVE)
 	jx gitops image -s .jx/git-operator
 
 # generate the yaml from the charts in helmfile.yaml and moves them to the right directory tree (cluster or namespaces/foo)
-	helmfile --file helmfile.yaml template --validate --include-crds --output-dir-template /tmp/generate/{{.Release.Namespace}}/{{.Release.Name}}
+	helmfile --file helmfile.yaml template $(HELMFILE_TEMPLATE_FLAGS) --validate --include-crds --output-dir-template /tmp/generate/{{.Release.Namespace}}/{{.Release.Name}}
 
 	jx gitops split --dir /tmp/generate
 	jx gitops rename --dir /tmp/generate
@@ -129,7 +141,7 @@ fetch: init $(COPY_SOURCE) $(REPOSITORY_RESOLVE)
 
 # convert k8s Secrets => ExternalSecret resources using secret mapping + schemas
 # see: https://github.com/jenkins-x/jx-secret#mappings
-	jx secret convert --source-dir $(OUTPUT_DIR) -r $(VAULT_ROLE) -m ${VAULT_MOUNT_POINT}
+	jx secret convert --source-dir $(OUTPUT_DIR) -r $(VAULT_ROLE_EXTERNAL_SECRETS) -m ${VAULT_MOUNT_POINT_EXTERNAL_SECRETS}
 
 # replicate secrets to local staging/production namespaces
 	jx secret replicate --selector secret.jenkins-x.io/replica-source=true
@@ -224,7 +236,7 @@ verify-ignore: verify-ingress-ignore
 secrets-populate:
 # lets populate any missing secrets we have a generator in `charts/repoName/chartName/secret-schema.yaml`
 # they can be modified/regenerated at any time via `jx secret edit`
-	-JX_VAULT_ROLE=${VAULT_ROLE} JX_VAULT_MOUNT_POINT=${VAULT_MOUNT_POINT} VAULT_ADDR=$(VAULT_ADDR) VAULT_NAMESPACE=$(VAULT_NAMESPACE) EXTERNAL_VAULT=$(EXTERNAL_VAULT) jx secret populate --secret-namespace $(VAULT_NAMESPACE)
+	-JX_VAULT_ROLE=${VAULT_ROLE_POPULATE} JX_VAULT_MOUNT_POINT=${VAULT_MOUNT_POINT_POPULATE} VAULT_ADDR=$(VAULT_ADDR) VAULT_NAMESPACE=$(VAULT_NAMESPACE) EXTERNAL_VAULT=$(EXTERNAL_VAULT) jx secret populate --secret-namespace $(VAULT_NAMESPACE)
 
 
 .PHONY: secrets-wait
@@ -288,7 +300,9 @@ kubectl-apply:
 	@echo "using kubectl to apply resources"
 
 # NOTE be very careful about these 2 labels as getting them wrong can remove stuff in you cluster!
-	kubectl apply $(KUBECTL_APPLY_FLAGS) --prune -l=gitops.jenkins-x.io/pipeline=customresourcedefinitions -R -f $(OUTPUT_DIR)/customresourcedefinitions
+	if [ -d $(OUTPUT_DIR)/customresourcedefinitions ]; then \
+	  kubectl apply $(KUBECTL_APPLY_FLAGS) --prune -l=gitops.jenkins-x.io/pipeline=customresourcedefinitions -R -f $(OUTPUT_DIR)/customresourcedefinitions; \
+	fi
 	kubectl apply $(KUBECTL_APPLY_FLAGS) --prune -l=gitops.jenkins-x.io/pipeline=cluster                   -R -f $(OUTPUT_DIR)/cluster
 	kubectl apply $(KUBECTL_APPLY_FLAGS) --prune -l=gitops.jenkins-x.io/pipeline=namespaces                -R -f $(OUTPUT_DIR)/namespaces
 
