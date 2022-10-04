@@ -1,6 +1,6 @@
 ## Charts
 
-This directory tree contains default properties of helm charts if no version or namespace is specified in your `helmfile.yaml` file along with default values files.
+This directory tree contains default properties of helm charts if no version or namespace is specified in your `helmfile.yaml` file along with default values files. 
 
 ### Defaults 
 
