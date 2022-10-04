@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: null
+  labels:
+    name: tekton-chains
+    gitops.jenkins-x.io/pipeline: 'cluster'
+    team: 'jx'
+  name: tekton-chains
+spec: {}
+status: {}
